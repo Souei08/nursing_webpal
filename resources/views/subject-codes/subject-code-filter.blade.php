@@ -1,20 +1,31 @@
 
 
 <form action="{{ route('dashboard.index') }}" method="GET">
+      <h4 class="mb-3">Subject Codes
+
+        <div class="float-end mb-3">
+          <div class="input-group">
+            <input 
+              class="form-control" 
+              placeholder="Search..."
+              name="name" 
+              min="1900"
+              maxlength="6"
+              aria-describedby="basic-addon1"
+              value="{{ isset($search['name']) ? $search['name'] : '' }}"
+            >
+            <button class="btn btn-outline-secondary border-left-0 border bg-white" class="input-group-text" id="basic-addon1" type="submit">
+                  <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </h4>
+
+
         <div class="mb-2 card w-100">
           <div class="card-body">
+          
             <div class="row align-items-end">
-             <div class="col-lg-2 col-sm-12 col-md-4 mb-1">
-                    <label class="mb-1 fs-6">Subject Codes</label>  
-                    <input 
-                      class="form-control" 
-                      placeholder="Subject Codes"
-                      name="name" 
-                      min="1900"
-                      maxlength="6"
-                      value="{{ isset($search['name']) ? $search['name'] : '' }}"
-                    >
-                </div>
                 <div class="col-lg-2 col-sm-12 col-md-4 mb-1">
                     <label class="mb-1 fs-6">School Year</label>  
                     <input 

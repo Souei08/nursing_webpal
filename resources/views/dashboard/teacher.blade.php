@@ -12,7 +12,6 @@
       <div class="col"></div>
       <div></div>
     </div>
-    <h4 class="mb-3">Subject Codes</h4>
 
     @include('subject-codes.subject-code-filter')
 
