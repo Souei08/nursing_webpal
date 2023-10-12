@@ -1,0 +1,21 @@
+1: setup xampp instruction here https://www.allphptricks.com/how-to-install-xampp-in-windows-10-11/
+2. download NursingWebPal-main.zip here https://drive.google.com/drive/folders/1NJtvkDjtxs1wqFJCMR1HTuU6CosM7A6C?usp=sharing
+3. download and install composer here https://getcomposer.org/Composer-Setup.exe
+4. download and install node here https://nodejs.org/dist/v14.18.2/node-v14.18.2-x64.msi
+5. open xampp then start appache and mysql 
+6. search mysql command line from windows search then open and login your mysql credentials
+7. run command "create database nursing_webpal;" then close mysql
+8. extract the downloaded NursingWebPal-main.zip to desktop or to any folder basta madali lang mahanap using CMD
+9. download .env from https://drive.google.com/drive/folders/1NJtvkDjtxs1wqFJCMR1HTuU6CosM7A6C?usp=sharing
+10. copy .env to "NursingWebPal-main" folder
+11. open .env to any code editor, ex: vs code
+12. change value of DB_PASSWORD=YOUR PASSWORD HERE, leave empty kung wala namang password ang mysql mo
+13. open terminal or CMD, then go to "NursingWebPal-main" folder kung san mo ini extract, cd Desktop/NursingWebPal-main (kung sa desktop mo ini extract)
+14. run "composer install" sa CMD (wait mo lang medyo matagal to)
+15. run "npm install" sa CMD (wait mo lang medyo matagal to)
+16. run "php artisan migrate"
+17. run "php artisan db:seed"
+18. run "php artisan optimize"
+19. run "php artisan serve" (dapat naka run to)
+20. open new CMD run "npm run watch" (wait mo lang medyo matagal to)
+21. open "localhost:8000" sa google chrome or any browser

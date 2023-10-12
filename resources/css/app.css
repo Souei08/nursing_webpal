@@ -1,0 +1,5 @@
+.subject-code-sidebar-db::-webkit-scrollbar {
+    height: 4px;
+    width: 4px;
+    background: red;
+}

@@ -1,0 +1,48 @@
+
+8.0 laravel
+
+17.02 sa react
+
+integration of set up sa react og laravel
+
+composer create-project laravel/laravel (projectname)
+
+kadtong path---composer require laravel/ui
+
+php artisan ui react
+
+npm install
+
+php artisan serve
+
+
+begin typing:
+
+cd react-app
+npm start
+comcom
+
+terminal-php artisan serve
+
+-----------
+laravel crud_database
+
+C:\WINDOWS\system32>D:
+
+D:\>cd xampp/htdocs/tutorial_laravel/
+
+D:\xampp\htdocs\tutorial_laravel>mkdir laravel_crud
+
+D:\xampp\htdocs\tutorial_laravel>cd laravel_crud
+
+C:\WINDOWS\system32>D:
+
+D:\>cd xampp/htdocs/tutorial_laravel/
+
+D:\xampp\htdocs\tutorial_laravel>mkdir laravel_crud
+
+D:\xampp\htdocs\tutorial_laravel\laravel_crud>composer create-project --prefer-dist laravel/laravel practice_crud
+
+D:\xampp\htdocs\tutorial_laravel\laravel_crud>cd practice_crud
+
+D:\xampp\htdocs\tutorial_laravel\laravel_crud\practice_crud>php artisan serve

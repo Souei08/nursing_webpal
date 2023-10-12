@@ -1,0 +1,35 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+@import 'sidebar';
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Font Awesome
+@import 'node_modules/font-awesome/scss/font-awesome.scss';
+
+// Hover Css
+@import 'node_modules/hover.css/scss/hover';
+
+// Animate
+@import 'node_modules/animate.css/animate';
+
+// Slick
+@import 'node_modules/slick-carousel/slick/slick.scss';
+@import 'node_modules/slick-carousel/slick/slick-theme.scss';
+
+//Lightbox
+@import 'node_modules/lightbox2/dist/css/lightbox.min';
+
+// Select2
+@import 'node_modules/select2/dist/css/select2.min';
+@import 'node_modules/select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme.min';
+
+@import 'main';

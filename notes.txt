@@ -1,0 +1,23 @@
+php artisan migrate && php artisan db:seed
+php artisan migrate:refresh && php artisan db:seed
+
+// Terminal Run
+
+php artisan serve
+yarn run watch
+
+Test Accounts
+
+admin@umindanao.edu.ph
+teacher@umindanao.edu.ph
+student@umindanao.edu.ph
+
+umnursingwebpal.space
+
+ssh root@139.162.54.39
+user name:  dyescn21
+password:    BSIT4AFeb0800671
+
+git remote set-url origin https://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@github.com/carlmagumpara/NursingWebPal.git
+
+php artisan migrate:refresh --path=/database/migrations/2023_01_03_234558_create_announcements_table.php
