@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center">
   <div id="profile-container" class="mb-3 position-relative profile-container-global">
-    <img  id="profileImage" class="bg-secondary" data-original="{{ \App\Helpers\Utils::getCurrentURL() . '/' . auth()->user()->photo }}" style="object-fit: cover;" src="{{ $user->photo ?? \App\Helpers\Utils::getCurrentURL() . '/' . auth()->user()->photo }}" alt="{{ $user->email ?? auth()->user()->email }}">
+    <img  id="profileImage" class="bg-secondary" data-original="{{ asset(auth()->user()->photo) }}" style="object-fit: cover;" src="{{ $user->photo ?? asset(auth()->user()->photo) }}" alt="{{ $user->email ?? auth()->user()->email }}">
     <div class="position-absolute profile-photo-icon">
       <i class="fa fa-camera"></i>
     </div>

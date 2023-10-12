@@ -34,7 +34,7 @@
         @else
         <li class="nav-item dropdown d-none d-sm-none d-md-block d-lg-block">
           <a id="navbarDropdown" class="nav-link dropdown-toggle me-3" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-          <img src="{{ \App\Helpers\Utils::getCurrentURL() . '/' . auth()->user()->photo }}" width="30" height="30" class="rounded-circle mx-2 bg-secondary">
+          <img src="{{ asset(auth()->user()->photo) }}" width="30" height="30" class="rounded-circle mx-2 bg-secondary">
           {{ auth()->user()->first_name }} {{ auth()->user()->last_name }} <br />
           <small class="d-none">{{ auth()->user()->role->name }}</small>
           </a>

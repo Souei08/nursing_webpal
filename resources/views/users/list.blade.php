@@ -28,9 +28,9 @@
                 <tr>
                     <td class="d-none">{{ $data->id }}</td>
                     <td>
-                        <a href="{{ $data->photo }}" data-lightbox="image-{{ $data->id }}"
+                        <a href="{{ $data->photo ?? asset($data->photo) }}" data-lightbox="image-{{ $data->id }}"
                             class="text-dark text-decoration-none">
-                            <img src="{{ $data->photo }}" style="width: 50px;">
+                            <img  class="rounded-circle mx-2 bg-secondary" src="{{ $data->photo ?? asset($data->photo) }}" width="50" height="50">
                         </a>
                     </td>
                     <td>{{ $data->first_name }} {{ $data->last_name }}</td>

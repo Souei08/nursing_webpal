@@ -107,6 +107,8 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     {
         if (!$value) {
             return asset('images/avatars/user.png');
+        } else {
+            return asset($value);
         }
 
         return $value;
