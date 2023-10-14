@@ -24,7 +24,7 @@ class SubjectCodeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255|unique:subject_codes',
+            'name' => "required|max:255|unique:subject_codes,name,{$this->id}",
             'description' => 'required',
             'start_year' => 'required|integer|lt:end_year',
             'end_year' => 'required|integer|gt:start_year',
