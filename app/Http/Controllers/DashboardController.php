@@ -36,10 +36,10 @@ class DashboardController extends Controller
                         $subjectCodesQuery->where('name', '=', $name);
                     }
                     if ($start_year) {
-                        $subjectCodesQuery->where('start_year', '=', $start_year);
+                        $subjectCodesQuery->where('start_year', '>=', $start_year);
                     }
                     if ($end_year) {
-                        $subjectCodesQuery->where('end_year', '=', $end_year);
+                        $subjectCodesQuery->where('end_year', '<=', $end_year);
                     }
                     if ($term) {
                         $subjectCodesQuery->where('term', '=', $term);
