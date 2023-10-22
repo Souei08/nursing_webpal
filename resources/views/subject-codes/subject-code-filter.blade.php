@@ -48,19 +48,6 @@
                     value="{{ isset($search['end_year']) ? $search['end_year'] : '' }}"
                     >
                 </div>
-
-                <div class="col-lg-2 col-sm-12 col-md-4 mb-1">
-                      <label class="mb-1 fs-6">Semester</label>  
-                      <input 
-                        min="1" 
-                        name="semester" 
-                        class="form-control" 
-                        placeholder="Semester"
-                        autocomplete="off"
-                        type="text"
-                        value="{{ isset($search['semester']) ? $search['semester'] : '' }}"
-                      >
-                </div>
                   <div class="col-lg-2 col-sm-12 col-md-4 mb-1">
                       <label class="mb-1 fs-6">Term</label>  
                       <input 
@@ -72,6 +59,19 @@
                         type="text"
                         value="{{ isset($search['term']) ? $search['term'] : '' }}"
                         > 
+                  </div>
+
+                  <div class="col-lg-2 col-sm-12 col-md-4 mb-1">
+                        <label class="mb-1 fs-6">Semester</label>  
+                        <input 
+                          min="1" 
+                          name="semester" 
+                          class="form-control" 
+                          placeholder="Semester"
+                          autocomplete="off"
+                          type="text"
+                          value="{{ isset($search['semester']) ? $search['semester'] : '' }}"
+                        >
                   </div>
                   <div class="col d-flex flex-row justify-content-start flex-wrap align-items-end gap-2">
                     <button type="submit" class="btn btn-primary">Submit</button>
