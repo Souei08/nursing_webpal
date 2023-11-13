@@ -158,61 +158,73 @@ class TaskController extends Controller
 
     public function submission(TaskSubmissionRequest $request)
     {
-        // $taskSubmission = TaskSubmission::firstOrCreate([
-        //     'user_id' => auth()->user()->id,
-        //     'task_id' => $request->task_id,
-        //     'description' => $request->description,
-        //     'status' => 'Pending',
-        // ]);
-        $taskSubmission = TaskSubmission::updateOrCreate([
-            'user_id' => auth()->user()->id,
-            'task_id' => $request->task_id
-        ],[
-            'description' => $request->description,
-            'status' => 'Pending',
-        ]);
 
-        error_log('awefawefoi');
+        try {
+            // $taskSubmission = TaskSubmission::firstOrCreate([
+            //     'user_id' => auth()->user()->id,
+            //     'task_id' => $request->task_id,
+            //     'description' => $request->description,
+            //     'status' => 'Pending',
+            // ]);
+            $taskSubmission = TaskSubmission::updateOrCreate([
+                'user_id' => auth()->user()->id,
+                'task_id' => $request->task_id
+            ],[
+                'description' => $request->description,
+                'status' => 'Pending',
+            ]);
 
-        if ($request->file('file')) {
+            error_log('awefawefoi');
 
-            $file = $request->file('file');
-
-            $fileName = date('ymdhis') . '_' . $file->getClientOriginalName();
-            $fileSize = $file->getSize();
-            $fileType  = $file->getClientOriginalExtension();
+            if ($request->file('file')) {
+                $files = $request->file('file');
 
 
-            try {
-                $taskSubmission->taskSubmissionFiles()->create([
-                    'files_file_name'           => $fileName,
-                    'files_file_size'           => $fileSize,
-                    'files_file_content_type'   => $fileType,
-                    'task_submission_id'        => $request->task_id,
-                    'files_updated_at'          => now(),
-                ]);
+                foreach($files as $file) {
+                    $fileName = date('ymdhis') . '_' . $file->getClientOriginalName();
+                    $fileSize = $file->getSize();
+                    $fileType  = $file->getClientOriginalExtension();
 
-                // $taskSubmission->taskSubmissionFiles()->updateOrCreate([
-                //     'task_submission_id'        => $request->task_id
-                // ],[
-                //     'files_file_name'           => $fileName,
-                //     'files_file_size'           => $fileSize,
-                //     'files_file_content_type'   => $fileType,
-                //     'files_updated_at'          => now(),
-                // ]);
 
-                $request->file('file')->move('files/tasks/submissions', $fileName);
-            } catch (\Throwable $th) {
-                error_log($th);
+                    try {
+                        $taskSubmission->taskSubmissionFiles()->create([
+                            'files_file_name'           => $fileName,
+                            'files_file_size'           => $fileSize,
+                            'files_file_content_type'   => $fileType,
+                            'task_submission_id'        => $request->task_id,
+                            'files_updated_at'          => now(),
+                        ]);
+
+                        // $taskSubmission->taskSubmissionFiles()->updateOrCreate([
+                        //     'task_submission_id'        => $request->task_id
+                        // ],[
+                        //     'files_file_name'           => $fileName,
+                        //     'files_file_size'           => $fileSize,
+                        //     'files_file_content_type'   => $fileType,
+                        //     'files_updated_at'          => now(),
+                        // ]);
+
+                        $request->file('file')->move('files/tasks/submissions', $fileName);
+                    } catch (\Throwable $th) {
+                        error_log($th);
+                    }
+                }
             }
+
+            return response()->json([
+                'redirect_url' => redirect()->back()->getTargetUrl(),
+                'message' => 'Submitted Successfully.',
+                'success' => true,
+            ], 200);
+        } catch (\Throwable $th) {
+            // Log the error for debugging
+            error_log($th);
+
+            return response()->json([
+                'message' => 'Error submitting task.',
+                'success' => false,
+            ], 500);
         }
-
-
-        return response()->json([
-            'redirect_url' => redirect()->back()->getTargetUrl(),
-            'message' => 'Submitted Successfully.',
-            'success' => true,
-        ], 200);
     }
 
     public function destroyImage(Request $request)

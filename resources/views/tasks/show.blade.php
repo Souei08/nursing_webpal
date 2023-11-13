@@ -178,7 +178,7 @@
                                     <h6 class="mb-2 text-muted">File Attachment</h6>
                                     <div class="card mb-3">
                                         <div class="card-body p-3">
-                                            @foreach ($submission->taskSubmissionFiles as $file)
+                                            @foreach ($submission->taskSubmissionFiles->sortByDesc('created_at') as $file)
                                                 @php
                                                     $extention = explode('.', $file->files_file_name);
                                                     $extention = end($extention);
@@ -222,7 +222,21 @@
                                         ])
                                         <div class="mb-3">
                                             <label class="form-label">File Attachment</label>
-                                            <input class="form-control" type="file" name="file">
+                                            
+                                            <div id="drop-area" class="drop-area">
+                                                <div class="instructions">Drag &amp; Drop files here or click to select files</div>
+                                                <input 
+                                                    class="form-control" 
+                                                    id="file-input" 
+                                                    type="file" 
+                                                    name="file[]" 
+                                                    multiple   
+                                                    onchange="handleFileSelect(event)"
+                                                >
+                                                <ul id="file-list" class="file-list"></ul>
+                                            </div>
+                                            
+                                            
                                         </div>
                                         <div class="d-flex justify-content-end align-items-center">
                                             <a class="btn btn-light me-2" href="{{ route('tasks.list') }}">Cancel</a>

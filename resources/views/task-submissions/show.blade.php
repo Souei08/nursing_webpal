@@ -33,7 +33,7 @@
                     <p>{{ $data->description }}</p>
                     <h6 class="mb-2 text-muted">File Attachment</h6>
                     <div class="mb-3">
-                        @foreach ($data->taskSubmissionFiles as $file)
+                        @foreach ($data->taskSubmissionFiles->sortByDesc('created_at') as $file)
                             @php
                                 $extention = explode('.', $file->files_file_name);
                                 $extention = end($extention);
