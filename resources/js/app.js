@@ -4,9 +4,9 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
-require('./custom');
-require('./sidebar');
+require("./bootstrap");
+require("./custom");
+require("./sidebar");
 
 // window.Vue = require('vue');
 
