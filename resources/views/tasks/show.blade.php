@@ -144,7 +144,19 @@
                                         ])
                                         <div class="mb-3">
                                             <label class="form-label">File Attachment</label>
-                                            <input class="form-control" type="file" name="file">
+                                               <div id="drop-area" class="drop-area">
+                                                    <div class="instructions">Drag &amp; Drop files here or click to select files</div>
+                                                    <input 
+                                                        class="form-control" 
+                                                        id="file-input" 
+                                                        type="file" 
+                                                        name="file[]" 
+                                                        multiple   
+                                                        onchange="handleFileSelect(event)"
+                                                    >
+                                                    <ul id="file-list" class="file-list"></ul>
+                                                </div>
+                                            <!-- <input class="form-control" type="file" name="file"> -->
                                         </div>
                                         <div class="d-flex justify-content-end align-items-center">
                                             <a class="btn btn-light me-2" href="{{ route('tasks.list') }}">Cancel</a>

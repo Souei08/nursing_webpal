@@ -47,9 +47,12 @@
         .file-list {
             list-style: none;
             padding: 0;
+            margin-top: 5px;
+            margin-bottom: 5px;
         }
 
         .file-item {
+            margin-top: 5px;
             margin-bottom: 5px;
         }
     </style>
