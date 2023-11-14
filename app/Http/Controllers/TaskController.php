@@ -65,25 +65,33 @@ class TaskController extends Controller
     {
         $task = Task::create($request->except(['file']) + ['user_id' => auth()->user()->id]);
 
+        $taskId = $task->id;
+
+
+        $task->taskFiles()->where('task_id', $taskId)->delete();
+
         if ($request->file('file')) {
+            $files = $request->file('file');
 
-            $file = $request->file('file');
+            foreach($files as $file) {
+                $fileName = date('ymdhis') . '_' . $file->getClientOriginalName();
+                $fileSize = $file->getSize();
+                $fileType  = $file->getClientOriginalExtension();
 
-            $fileName = date('ymdhis') . '_' . $file->getClientOriginalName();
-            $fileSize = $file->getSize();
-            $fileType  = $file->getClientOriginalExtension();
 
+                try {
+                    $task->taskFiles()->create([
+                        'files_file_name'           => $fileName,
+                        'files_file_size'           => $fileSize,
+                        'files_file_content_type'   => $fileType,
+                        'files_updated_at'          => now(),
+                    ]);
 
-            try {
-                $task->taskFiles()->create([
-                    'files_file_name'           => $fileName,
-                    'files_file_size'           => $fileSize,
-                    'files_file_content_type'   => $fileType,
-                    'files_updated_at'          => now(),
-                ]);
+                    $request->file('file')->move('files/tasks', $fileName);
+                } catch (\Throwable $th) { }
+                
+            }
 
-                $request->file('file')->move('files/tasks', $fileName);
-            } catch (\Throwable $th) { }
         }
 
 
@@ -109,25 +117,30 @@ class TaskController extends Controller
 
         $task->update($request->all());
 
+        $taskId = $task->id;
+        $task->taskFiles()->where('task_id', $taskId)->delete();
+
         if ($request->file('file')) {
 
-            $file = $request->file('file');
+            $files = $request->file('file');
 
-            $fileName = date('ymdhis') . '_' . $file->getClientOriginalName();
-            $fileSize = $file->getSize();
-            $fileType  = $file->getClientOriginalExtension();
+            foreach($files as $file) {
+                $fileName = date('ymdhis') . '_' . $file->getClientOriginalName();
+                $fileSize = $file->getSize();
+                $fileType  = $file->getClientOriginalExtension();
 
 
-            try {
-                $task->taskFiles()->create([
-                    'files_file_name'           => $fileName,
-                    'files_file_size'           => $fileSize,
-                    'files_file_content_type'   => $fileType,
-                    'files_updated_at'          => now(),
-                ]);
+                try {
+                    $task->taskFiles()->create([
+                        'files_file_name'           => $fileName,
+                        'files_file_size'           => $fileSize,
+                        'files_file_content_type'   => $fileType,
+                        'files_updated_at'          => now(),
+                    ]);
 
-                $request->file('file')->move('files/tasks', $fileName);
-            } catch (\Throwable $th) { }
+                    $request->file('file')->move('files/tasks', $fileName);
+                } catch (\Throwable $th) { }
+            }
         }
 
         return response()->json([
@@ -173,6 +186,11 @@ class TaskController extends Controller
                 'description' => $request->description,
                 'status' => 'Pending',
             ]);
+
+            $taskSubmissionId = $taskSubmission->id;
+
+
+            $taskSubmission->taskSubmissionFiles()->where('task_submission_id', $taskSubmissionId)->delete();
 
             error_log('awefawefoi');
 
