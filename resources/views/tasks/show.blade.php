@@ -49,14 +49,6 @@
                             <dd class="col-sm-9 h6 text-dark">{{ $data->scenario }}</dd>
                         </dl>
                         <dl class="row">
-                            <dt class="col-sm-3 text-muted">Date Submitted</dt>
-                            <dd class="col-sm-9 h6 text-dark">{{ \Carbon\Carbon::parse($data->created_at)->format('M d, Y g:i A') }}</dd>
-                        </dl>
-                        <dl class="row">
-                            <dt class="col-sm-3 text-muted">Date Submitted</dt>
-                            <dd class="col-sm-9 h6 text-dark">{{ \Carbon\Carbon::parse($data->created_at)->format('M d, Y g:i A') }}</dd>
-                        </dl>
-                        <dl class="row">
                             <dt class="col-sm-3 text-muted">File Attachment</dt>
                             <dd class="col-sm-9 h6 text-dark">
                                 @foreach ($data->taskFiles as $file)
@@ -205,7 +197,11 @@
                                         </div>
                                     </form>    
                                 @else
-                                    <h6 class="mb-2 text-muted">Description</h6>
+                                    <div class="d-flex justify-content-between">
+                                        <h6 class="mb-2 text-muted">Description</h6>
+                                        <h6 class="mb-2 text-muted text-end">{{ \Carbon\Carbon::parse($submission->updated_at)->format('M d, Y g:i A') }}</h6>
+                                    </div>
+                                    
                                     <p>{{ $submission->description }}</p>
                                     <h6 class="mb-2 text-muted">File Attachment</h6>
                                     <div class="card mb-3">

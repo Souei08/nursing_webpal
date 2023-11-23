@@ -29,8 +29,10 @@
                         </dl>
                     </div>
                     <h5 class="mb-4">Submission</h5>
-                    <h6 class="mb-2 text-muted">Description</h6>
-                    <p>{{ $data->description }}</p>
+                    <div class="d-flex">
+                        <h6 class="mb-2 text-muted" style="margin-right: 200px;">Description</h6>
+                        <h6 class="mb-2 text-muted">{{ \Carbon\Carbon::parse($data->updated_at)->format('M d, Y g:i A') }}</h6>
+                    </div>
                     <h6 class="mb-2 text-muted">File Attachment</h6>
                     <div class="mb-3">
                         @foreach ($data->taskSubmissionFiles->sortByDesc('created_at') as $file)
