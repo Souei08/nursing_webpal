@@ -14,7 +14,7 @@
           </div>
         </div>
       </div>
-      <form action="{{ route('tasks.store') }}" method="POST" data-ajax="true" enctype="multipart/form-data">
+      <form action="{{ route('tasks.store') }}" method="POST" data-ajax="true" enctype="multipart/form-data" class="custom-validation-form">
         <div class="card-body p-4">
           @csrf
           <input type="hidden" name="subject_code_id" value="{{ $data->id }}">
@@ -58,7 +58,7 @@
             <div id="drop-area" class="drop-area">
                 <div class="instructions">Drag &amp; Drop files here or click to select files</div>
                 <input 
-                    class="form-control" 
+                    class="form-control file-input-val" 
                     id="file-input" 
                     type="file" 
                     name="file[]" 

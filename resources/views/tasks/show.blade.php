@@ -133,7 +133,18 @@
                             <h5 class="mb-4">Task Submission</h5>
                             @if ($data->is_active)
                                 @if (empty($submission))
-                                    <form action="{{ route('tasks.submission') }}" method="POST" data-ajax="true">
+
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+
+                                    <form action="{{ route('tasks.submission') }}" method="POST" data-ajax="true" enctype="multipart/form-data" class="custom-validation-form">
                                         <input type="hidden" name="task_id" value="{{ $data->id }}">
                                         @include('generate.textarea', [
                                             'label' => 'Description',
@@ -147,7 +158,7 @@
                                                <div id="drop-area" class="drop-area">
                                                     <div class="instructions">Drag &amp; Drop files here or click to select files</div>
                                                     <input 
-                                                        class="form-control" 
+                                                        class="form-control file-input-val" 
                                                         id="file-input" 
                                                         type="file" 
                                                         name="file[]" 
@@ -158,6 +169,7 @@
                                                 </div>
                                             <!-- <input class="form-control" type="file" name="file"> -->
                                         </div>
+
                                         <div class="d-flex justify-content-end align-items-center">
                                             <a class="btn btn-light me-2" href="{{ route('tasks.list') }}">Cancel</a>
                                             <button class="btn btn-primary" type="button" data-bs-toggle="modal"
@@ -223,7 +235,18 @@
                                             @endforeach
                                         </div>
                                     </div>
-                                    <form action="{{ route('tasks.submission') }}" method="POST" data-ajax="true">
+
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+
+                                    <form action="{{ route('tasks.submission') }}" method="POST" data-ajax="true" enctype="multipart/form-data" class="custom-validation-form">
                                         <input type="hidden" name="task_id" value="{{ $data->id }}">
                                         @include('generate.textarea', [
                                             'label' => 'Description',
@@ -234,7 +257,6 @@
                                         ])
                                         <div class="mb-3">
                                             <label class="form-label">File Attachment</label>
-                                            
                                             <div id="drop-area" class="drop-area">
                                                 <div class="instructions">Drag &amp; Drop files here or click to select files</div>
                                                 <input 
@@ -247,9 +269,8 @@
                                                 >
                                                 <ul id="file-list" class="file-list"></ul>
                                             </div>
-                                            
-                                            
                                         </div>
+                                        
                                         <div class="d-flex justify-content-end align-items-center">
                                             <a class="btn btn-light me-2" href="{{ route('tasks.list') }}">Cancel</a>
                                             <button class="btn btn-primary" type="button" data-bs-toggle="modal"

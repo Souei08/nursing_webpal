@@ -55,11 +55,27 @@
             margin-top: 5px;
             margin-bottom: 5px;
         }
+
+        .error-message-custom {
+            color: #dc3545;
+            font-size: 0.875em;
+            margin-top: 0.25rem;
+            text-align: left;
+        }
+
+        .is-invalid-custom {
+            border-color: #dc3545;
+            padding-right: calc(1.6em + 0.75rem);
+            background-repeat: no-repeat;
+            background-position: right calc(0.4em + 0.1875rem) center;
+            background-size: calc(0.8em + 0.375rem) calc(0.8em + 0.375rem);
+        }
     </style>
 
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
+
             const dropArea = document.getElementById('drop-area');
             const fileInput = document.getElementById('file-input');
             const fileList = document.getElementById('file-list');
@@ -120,32 +136,36 @@
                 listItem.textContent = file.name;
                 fileList.appendChild(listItem);
             }
+
+            var form = document.querySelector('.custom-validation-form');
+
+            form.addEventListener('submit', function (event) {
+                clearErrorMessages();
+
+                if (fileInput.files.length === 0) {
+                    displayErrorMessage('file-input', 'Please select at least one file.');
+                    event.preventDefault(); // Prevent form submission
+                    return;
+                }
+            });
+
+            function displayErrorMessage(fieldName, message) {
+                var errorMessage = document.createElement('div');
+                errorMessage.classList.add('error-message-custom');
+                errorMessage.innerHTML = message;
+
+                var inputField = document.getElementById(fieldName); 
+                inputField.classList.add('is-invalid-custom');
+                inputField.parentNode.appendChild(errorMessage);
+            }
+
+            function clearErrorMessages() {
+                var errorMessages = document.querySelectorAll('.error-message-custom');
+                errorMessages.forEach(function (errorMessage) {
+                    errorMessage.parentNode.removeChild(errorMessage);
+                });
+            }
         });
-
-
-        // document.addEventListener('DOMContentLoaded', function () {
-        //     const fileInput = document.getElementById('fileInput');
-        //     const filePreview = document.getElementById('filePreview');
-
-        //     let files = [];
-
-        //     fileInput.addEventListener('change', handleFileChange);
-
-        //     function handleFileChange() {
-        //         files = Array.from(fileInput.files);
-        //         updateFilePreview();
-        //     }
-
-        //     function updateFilePreview() {
-        //         filePreview.innerHTML = '';
-        //         files.forEach(file => {
-        //             const fileItem = document.createElement('div');
-        //             filePreview.classList.add('file-item');
-        //             fileItem.textContent = file.name;
-        //             filePreview.appendChild(fileItem);
-        //         });
-        //     }
-        // });
     </script>
 </head>
 

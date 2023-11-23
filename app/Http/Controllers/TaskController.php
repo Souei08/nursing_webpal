@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\{SubjectCode, User, Task, TaskSubmission, TaskFile};
@@ -171,14 +172,13 @@ class TaskController extends Controller
 
     public function submission(TaskSubmissionRequest $request)
     {
-
-        try {
             // $taskSubmission = TaskSubmission::firstOrCreate([
             //     'user_id' => auth()->user()->id,
             //     'task_id' => $request->task_id,
             //     'description' => $request->description,
             //     'status' => 'Pending',
             // ]);
+
             $taskSubmission = TaskSubmission::updateOrCreate([
                 'user_id' => auth()->user()->id,
                 'task_id' => $request->task_id
@@ -234,15 +234,6 @@ class TaskController extends Controller
                 'message' => 'Submitted Successfully.',
                 'success' => true,
             ], 200);
-        } catch (\Throwable $th) {
-            // Log the error for debugging
-            error_log($th);
-
-            return response()->json([
-                'message' => 'Error submitting task.',
-                'success' => false,
-            ], 500);
-        }
     }
 
     public function destroyImage(Request $request)

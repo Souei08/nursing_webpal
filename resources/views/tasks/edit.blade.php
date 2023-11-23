@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-between align-items-center mb-3">
       @include('shared.breadcrumb')
     </div>
-    <form action="{{ route('tasks.update', $data->id) }}" method="POST" data-ajax="true">
+    <form action="{{ route('tasks.update', $data->id) }}" method="POST" data-ajax="true" class="custom-validation-form">
       <div class="card border-0 shadow">
         <div class="card-header bg-white py-3">
           <div class="row">
@@ -58,7 +58,7 @@
               <div id="drop-area" class="drop-area">
                   <div class="instructions">Drag &amp; Drop files here or click to select files</div>
                   <input 
-                      class="form-control" 
+                      class="form-control file-input-val" 
                       id="file-input" 
                       type="file" 
                       name="file[]" 

@@ -24,8 +24,9 @@ class TaskSubmissionRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'description'   => 'required',
-            // 'file'          => 'required',
+            'description'   => 'required',
+            'file'      => 'required',
+            'file.*'      => 'required',
         ];
     }
 }
