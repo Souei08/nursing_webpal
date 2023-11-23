@@ -137,24 +137,56 @@
                 fileList.appendChild(listItem);
             }
 
-            var form = document.querySelector('.custom-validation-form');
+            // var form = document.querySelector('.custom-validation-form');
 
-            form.addEventListener('submit', function (event) {
+            // form.addEventListener('submit', function (event) {
+            //     clearErrorMessages();
+
+            //     if (fileInput.files.length === 0) {
+            //         displayErrorMessage('file-input', 'Please select at least one file.');
+            //         event.preventDefault(); // Prevent form submission
+            //         return;
+            //     }
+            // });
+
+            // function displayErrorMessage(fieldName, message) {
+            //     var errorMessage = document.createElement('div');
+            //     errorMessage.classList.add('error-message-custom');
+            //     errorMessage.innerHTML = message;
+
+            //     var inputField = document.getElementById(fieldName); 
+            //     inputField.classList.add('is-invalid-custom');
+            //     inputField.parentNode.appendChild(errorMessage);
+            // }
+
+            // function clearErrorMessages() {
+            //     var errorMessages = document.querySelectorAll('.error-message-custom');
+            //     errorMessages.forEach(function (errorMessage) {
+            //         errorMessage.parentNode.removeChild(errorMessage);
+            //     });
+            // }
+
+            var form2 = document.querySelector('.custom-validation-form-students');
+
+            form2.addEventListener('submit', function (event) {
                 clearErrorMessages();
 
-                if (fileInput.files.length === 0) {
-                    displayErrorMessage('file-input', 'Please select at least one file.');
-                    event.preventDefault(); // Prevent form submission
-                    return;
+                var descriptionInput = document.querySelector('.description-input');
+
+                var descriptionValue = descriptionInput.value.trim();
+
+                if (descriptionValue === '' && fileInput.files.length === 0) {
+                    displayErrorMessage('file-input', 'Please enter a description or select at least one file.');
+                    event.preventDefault(); 
                 }
             });
-
+                    
             function displayErrorMessage(fieldName, message) {
                 var errorMessage = document.createElement('div');
                 errorMessage.classList.add('error-message-custom');
                 errorMessage.innerHTML = message;
 
-                var inputField = document.getElementById(fieldName); 
+                var inputField = document.getElementById(fieldName);
                 inputField.classList.add('is-invalid-custom');
                 inputField.parentNode.appendChild(errorMessage);
             }
@@ -163,6 +195,12 @@
                 var errorMessages = document.querySelectorAll('.error-message-custom');
                 errorMessages.forEach(function (errorMessage) {
                     errorMessage.parentNode.removeChild(errorMessage);
+                });
+
+                // Clear is-invalid-custom class from all fields
+                var inputFields = document.querySelectorAll('.is-invalid-custom');
+                inputFields.forEach(function (inputField) {
+                    inputField.classList.remove('is-invalid-custom');
                 });
             }
         });

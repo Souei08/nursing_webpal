@@ -28,8 +28,8 @@ class TaskRequest extends FormRequest
             'category' => 'required',
             'title' => 'required',
             'deadline' => 'required',
-            'file'      => 'required',
-            'file.*'      => 'required',
+            // 'file'      => 'required',
+            // 'file.*'      => 'required',
             // 'instructions' => 'required',
             // 'scenario' => 'required',
         ];

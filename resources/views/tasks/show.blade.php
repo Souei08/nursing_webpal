@@ -49,6 +49,14 @@
                             <dd class="col-sm-9 h6 text-dark">{{ $data->scenario }}</dd>
                         </dl>
                         <dl class="row">
+                            <dt class="col-sm-3 text-muted">Date Submitted</dt>
+                            <dd class="col-sm-9 h6 text-dark">{{ \Carbon\Carbon::parse($data->created_at)->format('M d, Y g:i A') }}</dd>
+                        </dl>
+                        <dl class="row">
+                            <dt class="col-sm-3 text-muted">Date Submitted</dt>
+                            <dd class="col-sm-9 h6 text-dark">{{ \Carbon\Carbon::parse($data->created_at)->format('M d, Y g:i A') }}</dd>
+                        </dl>
+                        <dl class="row">
                             <dt class="col-sm-3 text-muted">File Attachment</dt>
                             <dd class="col-sm-9 h6 text-dark">
                                 @foreach ($data->taskFiles as $file)
@@ -144,13 +152,13 @@
                                         </div>
                                     @endif
 
-                                    <form action="{{ route('tasks.submission') }}" method="POST" data-ajax="true" enctype="multipart/form-data" class="custom-validation-form">
+                                    <form action="{{ route('tasks.submission') }}" method="POST" data-ajax="true" enctype="multipart/form-data" class="custom-validation-form-students">
                                         <input type="hidden" name="task_id" value="{{ $data->id }}">
                                         @include('generate.textarea', [
                                             'label' => 'Description',
                                             'name' => 'description',
                                             'value' => '',
-                                            'inputClass' => '',
+                                            'inputClass' => 'description-input',
                                             'labelClass' => 'mb-0',
                                         ])
                                         <div class="mb-3">
@@ -246,13 +254,13 @@
                                         </div>
                                     @endif
 
-                                    <form action="{{ route('tasks.submission') }}" method="POST" data-ajax="true" enctype="multipart/form-data" class="custom-validation-form">
+                                    <form action="{{ route('tasks.submission') }}" method="POST" data-ajax="true" enctype="multipart/form-data" class="custom-validation-form-students">
                                         <input type="hidden" name="task_id" value="{{ $data->id }}">
                                         @include('generate.textarea', [
                                             'label' => 'Description',
                                             'name' => 'description',
                                             'value' => '',
-                                            'inputClass' => '',
+                                            'inputClass' => 'description-input',
                                             'labelClass' => 'mb-0',
                                         ])
                                         <div class="mb-3">
