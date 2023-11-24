@@ -186,8 +186,10 @@
                                                         <h5 class="mb-4 text-center">Are sure you want to submit?<h5>
                                                                 <div
                                                                     class="d-flex justify-content-center align-items-center">
-                                                                    <button type="submit"
-                                                                        class="btn btn-primary me-1">Yes</button>
+                                                                    <button 
+                                                                        type="submit"
+                                                                        class="btn btn-primary me-1" data-bs-dismiss="modal">Yes
+                                                                    </button>
                                                                     <button type="button" class="btn btn-secondary ms-1"
                                                                         data-bs-dismiss="modal">No</button>
                                                                 </div>
@@ -291,8 +293,10 @@
                                                         <h5 class="mb-4 text-center">Are sure you want to resubmit?<h5>
                                                                 <div
                                                                     class="d-flex justify-content-center align-items-center">
-                                                                    <button type="submit"
-                                                                        class="btn btn-primary me-1">Yes</button>
+                                                                    <button 
+                                                                        type="submit"
+                                                                        class="btn btn-primary me-1" data-bs-dismiss="modal">Yes
+                                                                    </button>
                                                                     <button type="button" class="btn btn-secondary ms-1"
                                                                         data-bs-dismiss="modal">No</button>
                                                                 </div>
