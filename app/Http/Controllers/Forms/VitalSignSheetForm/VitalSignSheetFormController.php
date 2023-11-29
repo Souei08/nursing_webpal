@@ -17,7 +17,8 @@ class VitalSignSheetFormController extends Controller
     {
         $data = VitalSignSheetForm::orderBy('id', 'DESC')->groupBy('patient_id');
 
-        $subjectCodes = SubjectCode::where(['user_id' => auth()->user()->id])->get();
+        // $subjectCodes = SubjectCode::where(['user_id' => auth()->user()->id])->get();
+        $subjectCodes = SubjectCode::where(['user_id' => auth()->user()->id])->pluck('id')->toArray();
 
         if (auth()->user()->role->slug === 'teacher') {
 

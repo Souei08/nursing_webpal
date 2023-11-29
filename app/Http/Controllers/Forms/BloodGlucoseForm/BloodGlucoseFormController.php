@@ -19,7 +19,8 @@ class BloodGlucoseFormController extends Controller
     {
         $data = BloodGlucoseForm::orderBy('id', 'DESC')->groupBy('patient_id');
 
-        $subjectCodes = SubjectCode::where(['user_id' => auth()->user()->id])->get();
+        // $subjectCodes = SubjectCode::where(['user_id' => auth()->user()->id])->get();
+        $subjectCodes = SubjectCode::where(['user_id' => auth()->user()->id])->pluck('id')->toArray();
 
         if (auth()->user()->role->slug === 'teacher') {
 

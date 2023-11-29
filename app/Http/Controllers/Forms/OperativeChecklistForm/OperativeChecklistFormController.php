@@ -18,7 +18,8 @@ class OperativeChecklistFormController extends Controller
     {
         $data = OperativeChecklistForm::orderBy('id', 'DESC');
 
-        $subjectCodes = SubjectCode::where(['user_id' => auth()->user()->id])->get();
+        // $subjectCodes = SubjectCode::where(['user_id' => auth()->user()->id])->get();
+        $subjectCodes = SubjectCode::where(['user_id' => auth()->user()->id])->pluck('id')->toArray();
 
         if (auth()->user()->role->slug === 'teacher') {
             $students = StudentProfile::whereIn('subject_code_id', $subjectCodes)->get()->pluck('user_id');

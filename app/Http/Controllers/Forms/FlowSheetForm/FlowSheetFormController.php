@@ -17,7 +17,8 @@ class FlowSheetFormController extends Controller
     {
         $data = FlowSheetForm::orderBy('id', 'DESC')->groupBy('patient_id');
 
-        $subjectCodes = SubjectCode::where(['user_id' => auth()->user()->id])->get();
+        // $subjectCodes = SubjectCode::where(['user_id' => auth()->user()->id])->get();
+        $subjectCodes = SubjectCode::where(['user_id' => auth()->user()->id])->pluck('id')->toArray();
 
         if (auth()->user()->role->slug === 'teacher') {
 

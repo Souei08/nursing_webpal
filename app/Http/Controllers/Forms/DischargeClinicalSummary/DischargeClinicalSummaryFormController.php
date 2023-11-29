@@ -18,7 +18,8 @@ class DischargeClinicalSummaryFormController extends Controller
     {
         $data = DischargeClinicalSummaryForm::orderBy('id', 'DESC');
 
-        $subjectCodes = SubjectCode::where(['user_id' => auth()->user()->id])->get();
+        // $subjectCodes = SubjectCode::where(['user_id' => auth()->user()->id])->get();
+        $subjectCodes = SubjectCode::where(['user_id' => auth()->user()->id])->pluck('id')->toArray();
 
         if (auth()->user()->role->slug === 'teacher') {
 
