@@ -17,27 +17,42 @@ class PatientAdmissionRecordFormController extends Controller
     {
         $data = PatientAdmissionRecordForm::orderBy('id', 'DESC');
 
-        $subjectCodes = SubjectCode::where(['user_id' => auth()->user()->id])->get();
+        // $subjectCodes = SubjectCode::where(['user_id' => auth()->user()->id])->get();
+        $subjectCodes = SubjectCode::where(['user_id' => auth()->user()->id])->pluck('id')->toArray();
 
-        if (auth()->user()->role->slug === 'teacher') {
-            $students = StudentProfile::whereIn('subject_code_id', $subjectCodes)->get()->pluck('user_id');
-            $students[count($students) + 1] = auth()->user()->id;
-            $data->whereIn('user_id', $students);
-        } elseif (auth()->user()->role->slug === 'student') {
-            $data->where(['user_id' => auth()->user()->id]);
+
+        try {
+            if (auth()->user()->role->slug === 'teacher') {
+
+                $students = StudentProfile::whereIn('subject_code_id', $subjectCodes)->get()->pluck('user_id');
+                $students[count($students) + 1] = auth()->user()->id;
+                $data->whereIn('user_id', $students);
+
+            } elseif (auth()->user()->role->slug === 'student') {
+                $data->where(['user_id' => auth()->user()->id]);
+            }
+    
+            if ($request->ajax() || ($request->has('search') && $request->search !== '')) {
+                $data->where('patient_first_name', 'like', '%' . $request->search . '%');
+    
+                return view('forms.patient_admission_record_form.list', [
+                    'list' => $data->orderBy('id', 'DESC')->paginate($request->per_page ?? 10),
+                ])->render();
+            }
+    
+            return view('forms.patient_admission_record_form.index', [
+                'list' => $data->paginate($request->per_page ?? 10),
+            ]);
+        } catch (\Exception $e) {
+            \Log::info($e);
+            error_log($e);
+            return response()->json([
+                'message' => 'Register details are not valid.',
+                'success' => false,
+                'error' => $e->getMessage(),
+            ], 200);
         }
-
-        if ($request->ajax() || ($request->has('search') && $request->search !== '')) {
-            $data->where('patient_first_name', 'like', '%' . $request->search . '%');
-
-            return view('forms.patient_admission_record_form.list', [
-                'list' => $data->orderBy('id', 'DESC')->paginate($request->per_page ?? 10),
-            ])->render();
-        }
-
-        return view('forms.patient_admission_record_form.index', [
-            'list' => $data->paginate($request->per_page ?? 10),
-        ]);
+      
     }
     public function create()
     {
